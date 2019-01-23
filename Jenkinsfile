@@ -1,67 +1,62 @@
 pipeline {
   agent any
   stages {
-    stage('Build new artifact') {
+    stage('Build') {
       steps {
         echo 'Commit new release and push to repository. Build application and push to artifactory'
       }
     }
-    stage('Code Quality Test') {
+    stage('Statische Tests') {
       parallel {
-        stage('Code Quality Test') {
+        stage('Statische Code-Analyse') {
           steps {
             echo '...'
           }
         }
-        stage('Static Security Test') {
+        stage('Statischer Sicherheitstest') {
           steps {
             echo '...'
           }
         }
       }
     }
-    stage('Deploy to Stage') {
+    stage('Deploy to STAGE') {
       steps {
         echo 'Deploy to Stage env.'
       }
     }
-    stage('Dynamic Security Test') {
+    stage('Funktionale Tests') {
       parallel {
-        stage('Dynamic Security Test') {
+        stage('Dynamischer Sicherheitstest') {
           steps {
             echo '_'
           }
         }
-        stage('API Test') {
+        stage('Schnittstellen-Test') {
           steps {
             echo '_'
           }
         }
-        stage('API Simulation') {
+        stage('Barrierefreiheits-Test') {
           steps {
             echo '_'
           }
         }
-        stage('Usability Test') {
-          steps {
-            echo '_'
-          }
-        }
-        stage('GUI Test') {
+        stage('GUI-Test') {
           steps {
             echo '_'
           }
         }
       }
     }
-    stage('Deploy to Perform') {
+    stage('Deploy to PERF') {
       steps {
         echo '_'
       }
     }
-    stage('Load & Performance Test') {
+    stage('Nicht-funktionale Tests') {
       parallel {
-        stage('Load & Performance Test') {
+        stage('Last- & Performance-Test') {
           steps {
             echo '_'
           }
@@ -73,12 +68,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy to Prod') {
-      steps {
-        echo '_'
-      }
-    }
-    stage('Intelligent Insights') {
+    stage('Deploy to PROD') {
       steps {
         echo '_'
       }
