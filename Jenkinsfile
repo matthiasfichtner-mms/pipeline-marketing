@@ -42,6 +42,11 @@ pipeline {
             echo '_'
           }
         }
+        stage('GUI Test on Mobile Devices') {
+          steps {
+            echo '-'
+          }
+        }
         stage('API Test') {
           steps {
             echo '-'
