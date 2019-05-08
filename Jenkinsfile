@@ -1,12 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Build new artifact') {
+    stage('Build') {
       steps {
         echo 'Commit new release and push to repository. Build application and push to artifactory'
       }
     }
-    stage('Code Quality Test') {
+    stage('static Tests') {
       parallel {
         stage('Code Quality Test') {
           steps {
@@ -20,24 +20,14 @@ pipeline {
         }
       }
     }
-    stage('Deploy to Stage') {
+    stage('Deploy to STAGE') {
       steps {
         echo 'Deploy to Stage env.'
       }
     }
-    stage('Dynamic Security Test') {
+    stage('functional Tests') {
       parallel {
         stage('Dynamic Security Test') {
-          steps {
-            echo '_'
-          }
-        }
-        stage('API Test') {
-          steps {
-            echo '_'
-          }
-        }
-        stage('API Simulation') {
           steps {
             echo '_'
           }
@@ -52,14 +42,19 @@ pipeline {
             echo '_'
           }
         }
+        stage('API Test') {
+          steps {
+            echo '-'
+          }
+        }
       }
     }
-    stage('Deploy to Perform') {
+    stage('Deploy to PERF') {
       steps {
         echo '_'
       }
     }
-    stage('Load & Performance Test') {
+    stage('non-functional Tests') {
       parallel {
         stage('Load & Performance Test') {
           steps {
@@ -73,7 +68,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy to Prod') {
+    stage('Deploy to PROD') {
       steps {
         echo '_'
       }
